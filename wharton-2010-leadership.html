@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wharton Leadership Journey · Communication Artifact</title>
+  <style>
+    :root {
+      --navy:    #011F5B;
+      --blue:    #005EB8;
+      --gold:    #C8972A;
+      --light:   #F4F6FA;
+      --white:   #FFFFFF;
+      --text:    #1A1A2E;
+      --muted:   #5A6A8A;
+      --border:  #D6E0F0;
+      --accent:  #E8F0FE;
+      --red:     #990000;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Georgia', serif;
+      background: var(--light);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    /* ── NAV ── */
+    nav {
+      background: var(--navy);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 56px;
+      box-shadow: 0 2px 12px rgba(0,0,0,.35);
+    }
+    nav .brand {
+      color: var(--gold);
+      font-size: 1rem;
+      font-weight: bold;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.6rem;
+    }
+    nav a {
+      color: rgba(255,255,255,.82);
+      text-decoration: none;
+      font-family: sans-serif;
+      font-size: .82rem;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      transition: color .2s;
+    }
+    nav a:hover { color: var(--gold); }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, var(--navy) 0%, #03366b 60%, #0055a5 100%);
+      color: white;
+      padding: 5rem 2rem 4rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 70% 30%, rgba(200,151,42,.18) 0%, transparent 60%);
+    }
+    .hero-eyebrow {
+      font-family: sans-serif;
+      font-size: .78rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      font-weight: normal;
+      line-height: 1.2;
+      margin-bottom: .8rem;
+    }
+    .hero h1 em { color: var(--gold); font-style: normal; }
+    .hero .subtitle {
+      color: rgba(255,255,255,.72);
+      font-size: 1.05rem;
+      max-width: 560px;
+      margin: 0 auto 2rem;
+      font-family: sans-serif;
+    }
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: .5rem;
+    }
+    .tag {
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.25);
+      color: white;
+      font-family: sans-serif;
+      font-size: .75rem;
+      padding: .3rem .8rem;
+      border-radius: 999px;
+      letter-spacing: .04em;
+    }
+
+    /* ── LAYOUT ── */
+    .container {
+      max-width: 1060px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    section { padding: 4rem 0; }
+    section:nth-child(even) { background: var(--white); }
+
+    .section-label {
+      font-family: sans-serif;
+      font-size: .72rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: .5rem;
+    }
+    .section-title {
+      font-size: 1.9rem;
+      color: var(--navy);
+      margin-bottom: .6rem;
+      font-weight: normal;
+    }
+    .section-sub {
+      color: var(--muted);
+      font-size: .95rem;
+      font-family: sans-serif;
+      max-width: 640px;
+      margin-bottom: 2.5rem;
+    }
+
+    /* ── WIFM HERO CARD ── */
+    .wifm-card {
+      background: linear-gradient(135deg, var(--navy), #0055a5);
+      border-radius: 16px;
+      padding: 2.5rem;
+      color: white;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    @media (max-width: 640px) { .wifm-card { grid-template-columns: 1fr; } }
+    .wifm-card h3 {
+      font-size: 1.1rem;
+      color: var(--gold);
+      margin-bottom: .6rem;
+      font-family: sans-serif;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+    .wifm-card p { color: rgba(255,255,255,.85); font-size: .95rem; }
+    .wifm-acronym {
+      display: flex;
+      flex-direction: column;
+      gap: .5rem;
+    }
+    .wifm-row {
+      display: flex;
+      align-items: baseline;
+      gap: .8rem;
+    }
+    .wifm-letter {
+      font-size: 2.2rem;
+      font-weight: bold;
+      color: var(--gold);
+      line-height: 1;
+      width: 36px;
+      flex-shrink: 0;
+    }
+    .wifm-def { font-size: .93rem; color: rgba(255,255,255,.88); }
+    .wifm-def strong { color: white; display: block; font-size: 1rem; }
+
+    /* ── GRID CARDS ── */
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.4rem; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2rem; }
+    @media (max-width: 800px) {
+      .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+    }
+
+    .card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.6rem;
+      transition: box-shadow .2s, transform .2s;
+    }
+    .card:hover { box-shadow: 0 8px 28px rgba(1,31,91,.12); transform: translateY(-2px); }
+    section:nth-child(even) .card { background: var(--light); }
+
+    .card-icon {
+      font-size: 1.8rem;
+      margin-bottom: .8rem;
+      display: block;
+    }
+    .card h4 {
+      font-size: 1rem;
+      color: var(--navy);
+      margin-bottom: .5rem;
+    }
+    .card p, .card li {
+      font-size: .88rem;
+      color: var(--muted);
+      font-family: sans-serif;
+      line-height: 1.6;
+    }
+    .card ul { padding-left: 1.1rem; }
+    .card ul li { margin-bottom: .25rem; }
+    .card .badge {
+      display: inline-block;
+      background: var(--accent);
+      color: var(--blue);
+      font-family: sans-serif;
+      font-size: .7rem;
+      padding: .15rem .55rem;
+      border-radius: 999px;
+      margin-bottom: .6rem;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+
+    /* ── FRAMEWORK TIMELINE (4Ws) ── */
+    .framework-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      margin-top: .5rem;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    @media (max-width: 700px) { .framework-steps { grid-template-columns: 1fr 1fr; } }
+    .step {
+      padding: 1.8rem 1.4rem;
+      border-right: 1px solid var(--border);
+      position: relative;
+    }
+    .step:last-child { border-right: none; }
+    .step:nth-child(1) { background: #011F5B; color: white; }
+    .step:nth-child(2) { background: #013a8c; color: white; }
+    .step:nth-child(3) { background: #0055a5; color: white; }
+    .step:nth-child(4) { background: #0070bf; color: white; }
+    .step-letter {
+      font-size: 2.8rem;
+      font-weight: bold;
+      color: var(--gold);
+      line-height: 1;
+      display: block;
+      margin-bottom: .3rem;
+    }
+    .step-word {
+      font-size: 1.1rem;
+      font-weight: bold;
+      margin-bottom: .6rem;
+    }
+    .step p { font-size: .82rem; opacity: .85; font-family: sans-serif; line-height: 1.55; }
+
+    /* ── PRINCIPLES LIST ── */
+    .principle {
+      display: flex;
+      gap: 1.2rem;
+      padding: 1.2rem 0;
+      border-bottom: 1px solid var(--border);
+      align-items: flex-start;
+    }
+    .principle:last-child { border-bottom: none; }
+    .principle-num {
+      background: var(--navy);
+      color: white;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: sans-serif;
+      font-size: .8rem;
+      font-weight: bold;
+      flex-shrink: 0;
+      margin-top: .1rem;
+    }
+    .principle h5 { font-size: .97rem; color: var(--navy); margin-bottom: .25rem; }
+    .principle p { font-size: .86rem; color: var(--muted); font-family: sans-serif; }
+
+    /* ── QUOTE ── */
+    .quote-block {
+      border-left: 4px solid var(--gold);
+      padding: 1.2rem 1.6rem;
+      background: var(--accent);
+      border-radius: 0 10px 10px 0;
+      margin: 1.5rem 0;
+    }
+    .quote-block p { font-size: 1.05rem; color: var(--navy); font-style: italic; }
+    .quote-block cite {
+      display: block;
+      margin-top: .5rem;
+      font-size: .8rem;
+      color: var(--muted);
+      font-family: sans-serif;
+      font-style: normal;
+    }
+
+    /* ── DO / DON'T TABLE ── */
+    .do-dont {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+      margin-top: 1rem;
+    }
+    @media (max-width: 600px) { .do-dont { grid-template-columns: 1fr; } }
+    .do-col, .dont-col {
+      border-radius: 10px;
+      padding: 1.4rem;
+    }
+    .do-col { background: #eaf6ec; border: 1px solid #a8d8b0; }
+    .dont-col { background: #fdecea; border: 1px solid #f5b8b4; }
+    .do-col h5 { color: #217a3a; margin-bottom: .7rem; font-family: sans-serif; }
+    .dont-col h5 { color: #b02c20; margin-bottom: .7rem; font-family: sans-serif; }
+    .do-col li, .dont-col li {
+      font-family: sans-serif;
+      font-size: .86rem;
+      margin-bottom: .35rem;
+      padding-left: .2rem;
+    }
+    .do-col { color: #1a4d27; }
+    .dont-col { color: #6b1c14; }
+    .do-col ul, .dont-col ul { padding-left: 1.1rem; }
+
+    /* ── QUICK REFERENCE CARD ── */
+    .ref-card {
+      background: var(--navy);
+      color: white;
+      border-radius: 16px;
+      padding: 2.5rem;
+    }
+    .ref-card h3 { color: var(--gold); margin-bottom: 1.5rem; font-size: 1.2rem; letter-spacing: .04em; }
+    .ref-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1.2rem;
+    }
+    @media (max-width: 700px) { .ref-grid { grid-template-columns: 1fr; } }
+    .ref-item h6 {
+      font-family: sans-serif;
+      font-size: .72rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: var(--gold);
+      margin-bottom: .5rem;
+    }
+    .ref-item p, .ref-item li {
+      font-size: .84rem;
+      color: rgba(255,255,255,.82);
+      font-family: sans-serif;
+      line-height: 1.5;
+    }
+    .ref-item ul { padding-left: 1rem; }
+    .ref-item li { margin-bottom: .2rem; }
+
+    /* ── CHECKLIST ── */
+    .checklist {
+      list-style: none;
+      padding: 0;
+    }
+    .checklist li {
+      display: flex;
+      align-items: flex-start;
+      gap: .7rem;
+      padding: .55rem 0;
+      border-bottom: 1px solid var(--border);
+      font-family: sans-serif;
+      font-size: .9rem;
+      color: var(--text);
+    }
+    .checklist li:last-child { border-bottom: none; }
+    .check-box {
+      width: 20px;
+      height: 20px;
+      border: 2px solid var(--navy);
+      border-radius: 4px;
+      flex-shrink: 0;
+      margin-top: .05rem;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy);
+      color: rgba(255,255,255,.55);
+      text-align: center;
+      padding: 2rem;
+      font-family: sans-serif;
+      font-size: .8rem;
+    }
+    footer strong { color: var(--gold); }
+
+    /* ── ACCENT STRIPE ── */
+    .stripe {
+      height: 5px;
+      background: linear-gradient(90deg, var(--navy) 0%, var(--gold) 50%, var(--red) 100%);
+    }
+
+    /* ── HIGHLIGHT BOX ── */
+    .highlight {
+      background: linear-gradient(135deg, #fff8e6, #fdf2d0);
+      border: 1px solid #e8c96a;
+      border-radius: 10px;
+      padding: 1.4rem 1.6rem;
+      margin: 1.5rem 0;
+    }
+    .highlight h5 { color: #7a5500; margin-bottom: .5rem; font-family: sans-serif; }
+    .highlight p, .highlight li {
+      font-family: sans-serif;
+      font-size: .88rem;
+      color: #5a3d00;
+      line-height: 1.6;
+    }
+    .highlight ul { padding-left: 1.1rem; }
+    .highlight li { margin-bottom: .25rem; }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="brand">Wharton · Leadership Journey</span>
+  <ul>
+    <li><a href="#wifm">WIFM</a></li>
+    <li><a href="#framework">Framework</a></li>
+    <li><a href="#presenting">Presenting</a></li>
+    <li><a href="#writing">Writing</a></li>
+    <li><a href="#reference">Quick Ref</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="stripe"></div>
+<header class="hero">
+  <p class="hero-eyebrow">Wharton Executive Education · 2010 Leadership Journey</p>
+  <h1>Communication &amp;<br><em>Influence</em> Artifact</h1>
+  <p class="subtitle">A personal reference document capturing frameworks, techniques, and principles from the Communication module — to revisit whenever you need to present, persuade, or lead.</p>
+  <div class="hero-tags">
+    <span class="tag">WIFM</span>
+    <span class="tag">Audience-First</span>
+    <span class="tag">Executive Presence</span>
+    <span class="tag">Storytelling</span>
+    <span class="tag">Message Architecture</span>
+    <span class="tag">Delivery</span>
+    <span class="tag">Feedback Integration</span>
+  </div>
+</header>
+
+<!-- ── SECTION 1: WIFM ── -->
+<section id="wifm">
+  <div class="container">
+    <p class="section-label">Core Mindset Shift</p>
+    <h2 class="section-title">WIFM — What's In It For Me?</h2>
+    <p class="section-sub">The single most powerful reframe in this course: every audience member is subconsciously asking "why should I care?" Answer that first — before your data, your slides, your argument.</p>
+
+    <div class="wifm-card">
+      <div>
+        <h3>The Acronym</h3>
+        <div class="wifm-acronym">
+          <div class="wifm-row">
+            <span class="wifm-letter">W</span>
+            <div class="wifm-def"><strong>What's</strong>the value proposition for this specific audience?</div>
+          </div>
+          <div class="wifm-row">
+            <span class="wifm-letter">I</span>
+            <div class="wifm-def"><strong>In It</strong>— what does the content contain that serves them?</div>
+          </div>
+          <div class="wifm-row">
+            <span class="wifm-letter">F</span>
+            <div class="wifm-def"><strong>For</strong>them, not for you — make the listener the hero.</div>
+          </div>
+          <div class="wifm-row">
+            <span class="wifm-letter">M</span>
+            <div class="wifm-def"><strong>Me</strong>— the individual in the room, not the group in aggregate.</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h3>How to Apply It</h3>
+        <p style="margin-bottom:.8rem;">Before writing a single word, answer these three questions about your audience:</p>
+        <ul style="padding-left:1.2rem; color:rgba(255,255,255,.85); font-family:sans-serif; font-size:.9rem; line-height:1.7;">
+          <li>What do they already know / believe?</li>
+          <li>What do they fear losing or hope to gain?</li>
+          <li>What decision or action do I need from them?</li>
+        </ul>
+        <div style="margin-top:1rem; background:rgba(200,151,42,.18); border-radius:8px; padding:.9rem 1rem;">
+          <p style="color:var(--gold); font-size:.83rem; font-family:sans-serif;">
+            <strong>The Test:</strong> If you can't complete the sentence <em>"After this message, my audience will feel/think/do ___"</em> — you're not ready to present.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="quote-block">
+      <p>"People don't care how much you know until they know how much you care — about them, their problems, and their goals."</p>
+      <cite>Core principle from Wharton Communication Module</cite>
+    </div>
+
+    <div class="grid-3">
+      <div class="card">
+        <span class="badge">Audience Analysis</span>
+        <h4>Know Your Listener</h4>
+        <ul>
+          <li>Role &amp; level of authority</li>
+          <li>Technical sophistication</li>
+          <li>Emotional stake in the outcome</li>
+          <li>Time constraints &amp; attention span</li>
+          <li>Prior relationship with you</li>
+        </ul>
+      </div>
+      <div class="card">
+        <span class="badge">Message Design</span>
+        <h4>Lead With Value</h4>
+        <ul>
+          <li>Open with the benefit, not background</li>
+          <li>State conclusions first (pyramid principle)</li>
+          <li>Use "you" language, not "I" language</li>
+          <li>Frame problems in their vocabulary</li>
+          <li>Connect data to decisions they control</li>
+        </ul>
+      </div>
+      <div class="card">
+        <span class="badge">Common Mistake</span>
+        <h4>The Expert Trap</h4>
+        <ul>
+          <li>Showing off knowledge ≠ communicating</li>
+          <li>Your process is rarely their concern</li>
+          <li>Credentials establish trust; content delivers value</li>
+          <li>Jargon excludes — plain language persuades</li>
+          <li>Less is almost always more</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SECTION 2: 4W FRAMEWORK ── -->
+<section id="framework">
+  <div class="container">
+    <p class="section-label">Message Architecture</p>
+    <h2 class="section-title">The Four Dimensions of Every Message</h2>
+    <p class="section-sub">Every high-impact communication decision can be mapped to four dimensions. Miss one, and even brilliant content falls flat.</p>
+
+    <div class="framework-steps">
+      <div class="step">
+        <span class="step-letter">W</span>
+        <div class="step-word">WHY</div>
+        <p>Why does this message matter? What's the stakes? Establish relevance and urgency before asking for attention. The audience must understand the "so what" before processing the "what."</p>
+      </div>
+      <div class="step">
+        <span class="step-letter">W</span>
+        <div class="step-word">WHAT</div>
+        <p>What is the core message? One sentence. One idea. One ask. If you can't state it in one sentence, you haven't finished thinking. Clarity is a form of respect for your audience's time.</p>
+      </div>
+      <div class="step">
+        <span class="step-letter">W</span>
+        <div class="step-word">WHERE</div>
+        <p>Where is the right venue? In-person vs. virtual, formal vs. informal, board room vs. hallway. Medium shapes message. Match the channel to the weight of the content.</p>
+      </div>
+      <div class="step">
+        <span class="step-letter">W</span>
+        <div class="step-word">WHEN &amp; HOW</div>
+        <p>Timing and tone. When is the audience most receptive? How much detail? What emotional register? Delivery is the last mile — content prepared; delivery executed.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:2rem;" class="grid-2">
+      <div>
+        <div class="highlight">
+          <h5>The Pyramid Principle (McKinsey Method)</h5>
+          <p style="margin-bottom:.5rem;">Structure messages top-down, never bottom-up:</p>
+          <ul>
+            <li><strong>Headline:</strong> Your conclusion / recommendation first</li>
+            <li><strong>Support:</strong> 2–3 key reasons or evidence points</li>
+            <li><strong>Detail:</strong> Data and backup — only if needed</li>
+          </ul>
+          <p style="margin-top:.6rem; font-style:italic;">Executives read the pyramid from the top. Always give them the option to stop.</p>
+        </div>
+      </div>
+      <div>
+        <div class="highlight">
+          <h5>Situation–Complication–Resolution (SCR)</h5>
+          <p style="margin-bottom:.5rem;">A narrative structure that creates urgency naturally:</p>
+          <ul>
+            <li><strong>Situation:</strong> Shared context — where we are today</li>
+            <li><strong>Complication:</strong> The tension — what's at risk or broken</li>
+            <li><strong>Resolution:</strong> Your recommendation — what to do next</li>
+          </ul>
+          <p style="margin-top:.6rem; font-style:italic;">Use SCR when you need to motivate action, not just inform.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SECTION 3: PRESENTING ── -->
+<section id="presenting">
+  <div class="container">
+    <p class="section-label">Executive Presence</p>
+    <h2 class="section-title">Speaking &amp; Presenting Skills</h2>
+    <p class="section-sub">What your instructors observed, and what the research confirms: presence is largely a set of trainable behaviors, not a personality trait.</p>
+
+    <div class="grid-2" style="margin-bottom:2rem;">
+      <div>
+        <h3 style="color:var(--navy); margin-bottom:1rem; font-size:1.1rem;">The 3 V's of Communication</h3>
+        <div class="principle">
+          <div class="principle-num">55%</div>
+          <div>
+            <h5>Visual (Body Language)</h5>
+            <p>Eye contact, posture, gestures, facial expression. The audience reads your body before your words. Stand still when making key points. Move with intention.</p>
+          </div>
+        </div>
+        <div class="principle">
+          <div class="principle-num">38%</div>
+          <div>
+            <h5>Vocal (Tone &amp; Pace)</h5>
+            <p>Volume, pace, pitch variation, pausing. Monotone = disengaged audience. Pause before key points — silence signals importance. Slow down when it matters.</p>
+          </div>
+        </div>
+        <div class="principle">
+          <div class="principle-num">7%</div>
+          <div>
+            <h5>Verbal (Words)</h5>
+            <p>The actual content of the words. Surprisingly small in isolation — which is why delivery training matters so much. Words only land when they ride the right wave of voice and body.</p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h3 style="color:var(--navy); margin-bottom:1rem; font-size:1.1rem;">Delivery Mechanics</h3>
+        <div class="card" style="margin-bottom:0; height:calc(100% - 2rem);">
+          <ul style="list-style:none; padding:0;">
+            <li style="padding:.55rem 0; border-bottom:1px solid var(--border); font-family:sans-serif; font-size:.87rem; display:flex; gap:.7rem; align-items:flex-start;">
+              <span style="color:var(--gold); font-weight:bold; flex-shrink:0;">→</span>
+              <span><strong>Eye contact:</strong> 3–5 seconds per person, completing a thought before moving on. Scan the full room, not just the decision-maker.</span>
+            </li>
+            <li style="padding:.55rem 0; border-bottom:1px solid var(--border); font-family:sans-serif; font-size:.87rem; display:flex; gap:.7rem; align-items:flex-start;">
+              <span style="color:var(--gold); font-weight:bold; flex-shrink:0;">→</span>
+              <span><strong>The pause:</strong> Silence is not dead air — it's emphasis. Pause before important statements, not after filler words.</span>
+            </li>
+            <li style="padding:.55rem 0; border-bottom:1px solid var(--border); font-family:sans-serif; font-size:.87rem; display:flex; gap:.7rem; align-items:flex-start;">
+              <span style="color:var(--gold); font-weight:bold; flex-shrink:0;">→</span>
+              <span><strong>Gestures:</strong> Use open palms when sharing ideas. Avoid self-touching (hair, face) — it signals anxiety. Keep gestures above the waist.</span>
+            </li>
+            <li style="padding:.55rem 0; border-bottom:1px solid var(--border); font-family:sans-serif; font-size:.87rem; display:flex; gap:.7rem; align-items:flex-start;">
+              <span style="color:var(--gold); font-weight:bold; flex-shrink:0;">→</span>
+              <span><strong>Stance:</strong> Feet shoulder-width apart, weight even. "Power pose" before entering — not during. Plant yourself during key points.</span>
+            </li>
+            <li style="padding:.55rem 0; font-family:sans-serif; font-size:.87rem; display:flex; gap:.7rem; align-items:flex-start;">
+              <span style="color:var(--gold); font-weight:bold; flex-shrink:0;">→</span>
+              <span><strong>Voice:</strong> End statements on a down-note (authority). Reserve up-notes for questions. Filler words ("um," "like") signal processing time — replace with silence.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="do-dont">
+      <div class="do-col">
+        <h5>✓ What Great Presenters Do</h5>
+        <ul>
+          <li>Open with a hook — a question, story, or provocation</li>
+          <li>State their one core idea within 60 seconds</li>
+          <li>Use stories and concrete examples, not abstractions</li>
+          <li>Invite the audience into the content (questions, polls)</li>
+          <li>Close with a clear call to action</li>
+          <li>Welcome Q&amp;A as a sign of engagement</li>
+          <li>Practice out loud — not in your head</li>
+          <li>Recover gracefully from mistakes (audience forgets; you remember)</li>
+        </ul>
+      </div>
+      <div class="dont-col">
+        <h5>✗ What Kills a Presentation</h5>
+        <ul>
+          <li>Reading from slides or notes</li>
+          <li>Too much content — "I'll go fast through this"</li>
+          <li>Starting with an apology or self-deprecation</li>
+          <li>Hiding behind the podium or lectern</li>
+          <li>Monotone delivery or flat affect</li>
+          <li>Leaving no time for Q&amp;A</li>
+          <li>Answering questions you weren't asked</li>
+          <li>Saying "I don't have a slide for this" — be ready to go off-script</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="quote-block" style="margin-top:2rem;">
+      <p>"Nervousness is energy. Redirect it — don't suppress it. The audience feels your energy; they don't know its source."</p>
+      <cite>Wharton Speaking Instructor Feedback</cite>
+    </div>
+
+    <h3 style="color:var(--navy); margin:2rem 0 1rem; font-size:1.1rem;">Managing Nerves &amp; Building Confidence</h3>
+    <div class="grid-3">
+      <div class="card">
+        <span class="card-icon">🧘</span>
+        <h4>Before You Speak</h4>
+        <ul>
+          <li>Slow, deep breathing activates the parasympathetic system</li>
+          <li>Warm up your voice privately</li>
+          <li>Walk the space if possible</li>
+          <li>Focus on the audience's needs, not your own performance</li>
+        </ul>
+      </div>
+      <div class="card">
+        <span class="card-icon">🎯</span>
+        <h4>In the Moment</h4>
+        <ul>
+          <li>Find one friendly face to anchor your opening</li>
+          <li>Slow your pace — nerves speed you up</li>
+          <li>Use purposeful movement to reset</li>
+          <li>Remember: the audience wants you to succeed</li>
+        </ul>
+      </div>
+      <div class="card">
+        <span class="card-icon">📈</span>
+        <h4>Long-Term Growth</h4>
+        <ul>
+          <li>Seek every opportunity to speak publicly</li>
+          <li>Record yourself and watch it back</li>
+          <li>Request specific feedback (not "how was I?")</li>
+          <li>Competence compounds — comfort follows</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SECTION 4: WRITING ── -->
+<section id="writing">
+  <div class="container">
+    <p class="section-label">Written Communication</p>
+    <h2 class="section-title">Executive Writing Principles</h2>
+    <p class="section-sub">Written messages live longer than spoken ones. They get forwarded, screenshotted, and re-read without context. That demands more precision and intentionality.</p>
+
+    <div class="grid-2">
+      <div>
+        <h3 style="color:var(--navy); margin-bottom:1.2rem; font-size:1.1rem;">The Writing Process</h3>
+        <div class="principle">
+          <div class="principle-num">1</div>
+          <div>
+            <h5>Define your purpose and audience first</h5>
+            <p>Who reads this? What do you want them to think, feel, or do? Write this down before opening a blank document.</p>
+          </div>
+        </div>
+        <div class="principle">
+          <div class="principle-num">2</div>
+          <div>
+            <h5>Lead with the headline</h5>
+            <p>Subject lines, email openers, exec summaries — all should state the main point, not tease it. Busy readers skim from the top.</p>
+          </div>
+        </div>
+        <div class="principle">
+          <div class="principle-num">3</div>
+          <div>
+            <h5>Draft without editing — then edit ruthlessly</h5>
+            <p>Separate creation from critique. Get it out first. Then cut by 25–30%. If a sentence doesn't earn its place, delete it.</p>
+          </div>
+        </div>
+        <div class="principle">
+          <div class="principle-num">4</div>
+          <div>
+            <h5>Read it aloud before sending</h5>
+            <p>If you stumble reading it, the reader will stumble too. Awkward phrasing and missing logic surface immediately when spoken.</p>
+          </div>
+        </div>
+        <div class="principle">
+          <div class="principle-num">5</div>
+          <div>
+            <h5>Anticipate questions and objections</h5>
+            <p>A great written piece addresses the reader's "yes, but…" before they raise it. Preempt pushback with evidence and framing.</p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h3 style="color:var(--navy); margin-bottom:1.2rem; font-size:1.1rem;">Slide &amp; Document Design</h3>
+        <div class="card">
+          <ul style="list-style:none; padding:0;">
+            <li style="padding:.5rem 0; border-bottom:1px solid var(--border); font-family:sans-serif; font-size:.86rem;">
+              <strong>One idea per slide.</strong> If you need a second slide, make one.
+            </li>
+            <li style="padding:.5rem 0; border-bottom:1px solid var(--border); font-family:sans-serif; font-size:.86rem;">
+              <strong>Action title rule:</strong> Every slide title should be a declarative sentence that stands alone as a takeaway ("Revenue grew 18% — exceeding plan").
+            </li>
+            <li style="padding:.5rem 0; border-bottom:1px solid var(--border); font-family:sans-serif; font-size:.86rem;">
+              <strong>Data ≠ insight.</strong> Show what the data means, not just what it shows. "Sales are up" vs. "Sales growth confirms the new channel strategy is working."
+            </li>
+            <li style="padding:.5rem 0; border-bottom:1px solid var(--border); font-family:sans-serif; font-size:.86rem;">
+              <strong>Slides are a leave-behind, not a teleprompter.</strong> Your spoken narrative should add to, not repeat, what's on screen.
+            </li>
+            <li style="padding:.5rem 0; border-bottom:1px solid var(--border); font-family:sans-serif; font-size:.86rem;">
+              <strong>White space is signal, not waste.</strong> Crowded slides signal disorganized thinking.
+            </li>
+            <li style="padding:.5rem 0; font-family:sans-serif; font-size:.86rem;">
+              <strong>The "so what?" test:</strong> Point at every element and ask "so what?" If you can't answer, remove it.
+            </li>
+          </ul>
+        </div>
+
+        <div class="highlight" style="margin-top:1.2rem;">
+          <h5>Email Best Practices</h5>
+          <ul>
+            <li>Subject line = your headline. State the action or topic clearly.</li>
+            <li>First sentence = WIFM for the reader.</li>
+            <li>No more than 5 sentences for a simple request.</li>
+            <li>Use bullets for 3+ items — never run them into prose.</li>
+            <li>Put your ask in the last paragraph, not buried in the middle.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SECTION 5: INFLUENCE ── -->
+<section>
+  <div class="container">
+    <p class="section-label">Persuasion &amp; Influence</p>
+    <h2 class="section-title">Leading Without Authority</h2>
+    <p class="section-sub">Communication in leadership is rarely top-down command. More often, it's lateral influence — getting peers, stakeholders, and teams to move with you voluntarily.</p>
+
+    <div class="grid-3" style="margin-bottom:2rem;">
+      <div class="card">
+        <span class="card-icon">❤️</span>
+        <h4>Ethos — Credibility</h4>
+        <p>Who you are matters. Establish credibility quickly but not arrogantly. Reference your relevant experience early. Credibility is lent, not assumed.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">💡</span>
+        <h4>Logos — Logic</h4>
+        <p>Evidence, data, and reasoning. Structure your argument so it's irrefutable on the facts. But logic alone rarely moves people to action.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">🔥</span>
+        <h4>Pathos — Emotion</h4>
+        <p>Story, analogy, and stakes. People decide emotionally and justify rationally. Connect your data to something the audience cares about.</p>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div>
+        <div class="quote-block">
+          <p>"The most persuasive message isn't the one with the most data — it's the one that makes the listener feel understood before asking them to change."</p>
+          <cite>Cialdini principles, as applied in Wharton module</cite>
+        </div>
+
+        <h3 style="color:var(--navy); margin:1.2rem 0 .8rem; font-size:1.05rem;">Handling Difficult Conversations</h3>
+        <div class="principle">
+          <div class="principle-num">→</div>
+          <div>
+            <h5>Separate the person from the problem</h5>
+            <p>Attack the issue, not the individual. "The report was late" vs. "You always miss deadlines."</p>
+          </div>
+        </div>
+        <div class="principle">
+          <div class="principle-num">→</div>
+          <div>
+            <h5>Acknowledge before redirecting</h5>
+            <p>Validate the other person's perspective before presenting yours. "I understand why you'd see it that way — here's a different angle."</p>
+          </div>
+        </div>
+        <div class="principle">
+          <div class="principle-num">→</div>
+          <div>
+            <h5>Ask questions before making statements</h5>
+            <p>Curiosity disarms defensiveness. Understanding the other side strengthens your own argument and opens doors to agreement.</p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h3 style="color:var(--navy); margin-bottom:.8rem; font-size:1.05rem;">The Feedback Loop</h3>
+        <div class="card">
+          <p style="font-family:sans-serif; font-size:.87rem; margin-bottom:.8rem; color:var(--text);">Great communicators treat every interaction as a feedback opportunity — both giving and receiving.</p>
+          <ul>
+            <li style="font-family:sans-serif; font-size:.86rem; padding:.35rem 0; border-bottom:1px solid var(--border);"><strong>Giving feedback:</strong> Specific + Behavioral + Impact ("When you did X, it caused Y, which matters because Z").</li>
+            <li style="font-family:sans-serif; font-size:.86rem; padding:.35rem 0; border-bottom:1px solid var(--border);"><strong>Receiving feedback:</strong> Listen fully. Don't defend immediately. Say "thank you." Reflect, then decide.</li>
+            <li style="font-family:sans-serif; font-size:.86rem; padding:.35rem 0; border-bottom:1px solid var(--border);"><strong>Soliciting feedback:</strong> Ask specifically — "What was one thing I could have done differently?" not "How did I do?"</li>
+            <li style="font-family:sans-serif; font-size:.86rem; padding:.35rem 0;"><strong>Closing the loop:</strong> Tell people when you act on their feedback. It builds trust and invites more.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SECTION 6: QUICK REFERENCE ── -->
+<section id="reference">
+  <div class="container">
+    <p class="section-label">Field Guide</p>
+    <h2 class="section-title">Quick Reference Card</h2>
+    <p class="section-sub">Tear this out mentally. Review before any important communication event.</p>
+
+    <div class="ref-card">
+      <h3>Before Any Important Communication</h3>
+      <div class="ref-grid">
+        <div class="ref-item">
+          <h6>WIFM Checklist</h6>
+          <ul>
+            <li>Who is my audience?</li>
+            <li>What do they already believe?</li>
+            <li>What do they fear / want?</li>
+            <li>What's one thing I want them to do?</li>
+            <li>What's my opening hook?</li>
+          </ul>
+        </div>
+        <div class="ref-item">
+          <h6>Message Structure</h6>
+          <ul>
+            <li>Headline first (conclusion up top)</li>
+            <li>3 supporting points max</li>
+            <li>Evidence only if needed</li>
+            <li>Close with one clear ask</li>
+            <li>Anticipate top 2 objections</li>
+          </ul>
+        </div>
+        <div class="ref-item">
+          <h6>Delivery Reminders</h6>
+          <ul>
+            <li>Slow down 20% from normal</li>
+            <li>Make eye contact (3–5 sec)</li>
+            <li>Pause before key points</li>
+            <li>Breathe — silence is power</li>
+            <li>End with conviction (down-note)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div style="margin-top:1.8rem; border-top:1px solid rgba(255,255,255,.2); padding-top:1.8rem;">
+        <div class="ref-grid">
+          <div class="ref-item">
+            <h6>The 4 W Questions</h6>
+            <ul>
+              <li><strong style="color:white;">WHY</strong> does this matter to them?</li>
+              <li><strong style="color:white;">WHAT</strong> is my one core message?</li>
+              <li><strong style="color:white;">WHERE/WHEN</strong> is best for this?</li>
+              <li><strong style="color:white;">HOW</strong> should I deliver it?</li>
+            </ul>
+          </div>
+          <div class="ref-item">
+            <h6>Ethos / Logos / Pathos</h6>
+            <ul>
+              <li>Establish credibility early</li>
+              <li>Support with evidence</li>
+              <li>Connect to what they care about</li>
+              <li>Story &gt; statistics (usually)</li>
+            </ul>
+          </div>
+          <div class="ref-item">
+            <h6>Post-Event Review</h6>
+            <ul>
+              <li>What landed well?</li>
+              <li>What confused them?</li>
+              <li>What would I cut?</li>
+              <li>Did I get my ask?</li>
+              <li>What feedback did I receive?</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="color:var(--navy); margin:2.5rem 0 1rem; font-size:1.1rem;">Pre-Presentation Checklist</h3>
+    <div class="grid-2">
+      <ul class="checklist">
+        <li><span class="check-box"></span>I can state my single core message in one sentence</li>
+        <li><span class="check-box"></span>I know what I want the audience to think / feel / do</li>
+        <li><span class="check-box"></span>I've opened with a hook (not "Hi, I'm here to talk about…")</li>
+        <li><span class="check-box"></span>Every slide has an action title (declarative sentence)</li>
+        <li><span class="check-box"></span>I've practiced out loud at least twice</li>
+        <li><span class="check-box"></span>I know my first 30 seconds cold (no notes)</li>
+      </ul>
+      <ul class="checklist">
+        <li><span class="check-box"></span>I've anticipated the 2–3 hardest questions</li>
+        <li><span class="check-box"></span>I know the room, tech, and logistics</li>
+        <li><span class="check-box"></span>I have a clear call to action ready for the close</li>
+        <li><span class="check-box"></span>I've planned how to handle silence after asking a question</li>
+        <li><span class="check-box"></span>I've removed filler words from my opening</li>
+        <li><span class="check-box"></span>I know how to gracefully say "I don't know, I'll find out"</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ── SECTION 7: REFLECTIONS ── -->
+<section>
+  <div class="container">
+    <p class="section-label">Personal Reflections</p>
+    <h2 class="section-title">What I'm Taking Forward</h2>
+    <p class="section-sub">The insights that shifted my perspective — not just what to do, but how I think about communication as a leadership tool.</p>
+
+    <div class="grid-2">
+      <div class="card">
+        <span class="badge">Biggest Shift</span>
+        <h4>Communication is a Strategy, Not a Skill</h4>
+        <p>I came in thinking this was about polishing delivery. I'm leaving understanding that how I communicate <em>is</em> my leadership strategy. Every message either builds or erodes trust, alignment, and momentum.</p>
+      </div>
+      <div class="card">
+        <span class="badge">Hardest Lesson</span>
+        <h4>The Expert Trap is Real — and I Fall Into It</h4>
+        <p>My instinct is to demonstrate competence by showing my work. But busy leaders don't want to see the work — they want the answer and enough evidence to trust it. I need to start at the conclusion.</p>
+      </div>
+      <div class="card">
+        <span class="badge">Most Actionable</span>
+        <h4>WIFM Before Every Message</h4>
+        <p>This one question — "What's In It For Me (them)?" — will change how I start every email, deck, and conversation. It forces me to think like a listener, not a speaker.</p>
+      </div>
+      <div class="card">
+        <span class="badge">Most Surprising</span>
+        <h4>Silence is the Most Underused Tool</h4>
+        <p>I filled every pause with words. The data says that's a mistake — pauses before key points signal importance. Pauses after asking questions invite genuine response. I'm going to practice uncomfortable silence.</p>
+      </div>
+    </div>
+
+    <div class="quote-block" style="margin-top:2rem;">
+      <p>"The goal is not to be a great communicator. The goal is to create great outcomes — and communication is how you get there."</p>
+      <cite>Wharton Leadership Journey, Communication Module — Personal Takeaway</cite>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<div class="stripe"></div>
+<footer>
+  <p><strong>Wharton School of Business</strong> · Leadership Journey 2010 · Communication Module</p>
+  <p style="margin-top:.4rem;">Personal Artifact — For Private Reference Only</p>
+</footer>
+
+</body>
+</html>
